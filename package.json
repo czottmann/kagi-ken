@@ -1,0 +1,35 @@
+{
+  "name": "kagi-ken",
+  "version": "1.0.0",
+  "description": "Core functionality for accessing Kagi.com services (search and summarizer) using session tokens. Outputs structured JSON matching official API schemas.",
+  "type": "module",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "src/",
+    "package.json",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "scripts": {},
+  "keywords": [
+    "kagi",
+    "search",
+    "summarizer",
+    "api"
+  ],
+  "author": "Carlo Zottmann <carlo@zottmann.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.1.2"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/czottmann/kagi-ken.git"
+  },
+  "bugs": {
+    "url": "https://github.com/czottmann/kagi-ken/issues"
+  },
+  "homepage": "https://github.com/czottmann/kagi-ken#readme"
+}
