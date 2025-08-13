@@ -3,5 +3,5 @@
  * Core functionality for accessing Kagi.com services using session tokens
  */
 
-export { search } from "./src/search.js";
-export { summarize, SUPPORTED_LANGUAGES } from "./src/summarize.js";
+export { search } from "./search.js";
+export { summarize, SUPPORTED_LANGUAGES } from "./summarize.js";
