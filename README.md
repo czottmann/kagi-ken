@@ -1,6 +1,6 @@
 # kagi-ken
 
-A Node.js package that provides programmatic access to Kagi.com services using session tokens:
+A lightweight Node package that provides programmatic access to Kagi.com services using session tokens:
 
 - **Search**: Searches Kagi.com and returns structured JSON data matching Kagi's official search API schema
 - **Summarizer**: Uses Kagi's Summarizer to create summaries from URLs or text content
@@ -161,9 +161,22 @@ try {
 }
 ```
 
+## Author
+
+Carlo Zottmann, <carlo@zottmann.dev>, https://c.zottmann.dev, https://github.com/czottmann.
+
+This project is neither affiliated with nor endorsed by Kagi. I'm just a very happy customer.
+
+> [!TIP]
+> I make Shortcuts-related macOS & iOS productivity apps like [Actions For Obsidian](https://actions.work/actions-for-obsidian), [Browser Actions](https://actions.work/browser-actions) (which adds Shortcuts support for several major browsers), and [BarCuts](https://actions.work/barcuts) (a surprisingly useful contextual Shortcuts launcher). Check them out!
+
+
 ## Related Projects
 
-- **[kagi-ken-cli](https://github.com/czottmann/kagi-ken-cli)** - Command-line interface using this package
+- [czottmann/kagi-ken-mcp](https://github.com/czottmann/kagi-ken-mcp) - MCP server using this package
+- [czottmann/kagi-ken-cli](https://github.com/czottmann/kagi-ken-cli) - Command-line tool using this package
+
+---
 
 ## Technical Details
 
@@ -174,12 +187,3 @@ try {
 - **Error Handling**: Network errors, invalid tokens, parsing failures, stream processing
 - **User Agent**: Mimics Safari browser for compatibility
 - **Dependencies**: Only `cheerio` for HTML parsing
-
-## Author
-
-Carlo Zottmann, <carlo@zottmann.dev>, https://c.zottmann.dev, https://github.com/czottmann.
-
-This project is neither affiliated with nor endorsed by Kagi. I'm just a very happy customer.
-
-> [!TIP]
-> I make Shortcuts-related macOS & iOS productivity apps like [Actions For Obsidian](https://actions.work/actions-for-obsidian), [Browser Actions](https://actions.work/browser-actions) (which adds Shortcuts support for several major browsers), and [BarCuts](https://actions.work/barcuts) (a surprisingly useful contextual Shortcuts launcher). Check them out!
