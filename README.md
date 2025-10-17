@@ -21,7 +21,7 @@ The [Kagi API](https://help.kagi.com/kagi/api/overview.html) requires a separate
 ## Installation
 
 ```bash
-npm install czottmann/kagi-ken#1.0.0
+npm install czottmann/kagi-ken#1.2.0
 ```
 
 ## Usage
