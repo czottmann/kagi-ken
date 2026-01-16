@@ -129,6 +129,9 @@ function extractSearchResult($, element) {
     // Extract snippet
     const snippet = $element.find(".__sri-desc").text().trim();
 
+    // Extract published date
+    const published = $element.find(".__sri-time").first().text().trim() || null;
+
     if (!title || !url) {
       return null;
     }
@@ -138,6 +141,7 @@ function extractSearchResult($, element) {
       url: url,
       title: title,
       snippet: snippet || "",
+      published: published,
     };
   } catch (error) {
     return null;
@@ -163,6 +167,9 @@ function extractGroupedResult($, element) {
     // Extract snippet
     const snippet = $element.find(".__sri-desc").text().trim();
 
+    // Extract published date
+    const published = $element.find(".__sri-time").first().text().trim() || null;
+
     if (!title || !url) {
       return null;
     }
@@ -172,6 +179,7 @@ function extractGroupedResult($, element) {
       url: url,
       title: title,
       snippet: snippet || "",
+      published: published,
     };
   } catch (error) {
     return null;
