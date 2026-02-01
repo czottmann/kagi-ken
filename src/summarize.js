@@ -130,7 +130,7 @@ export async function summarize(input, token, options) {
     const parsedResponse = parseStreamingSummary(streamData);
 
     // Extract output_data.markdown and return as data.output
-    const output = parsedResponse?.output_data?.markdown || "";
+    const output = parsedResponse?.output_data?.markdown ?? parsedResponse?.md ?? "";
     return { data: { output } };
   } catch (error) {
     if (error.code === "ENOTFOUND" || error.code === "ECONNREFUSED") {
@@ -157,8 +157,11 @@ function parseStreamingSummary(streamData) {
 
     const lastMessage = messages[messages.length - 1].trim();
 
-    // Remove "final:" prefix if present
-    const jsonString = lastMessage.replace(/^final:/, "").trim();
+    // Remove "final:" and "new_message.json:" prefixes if present
+    const jsonString = lastMessage
+      .replace(/^final:/, "")
+      .replace(/^new_message\.json:/, "")
+      .trim();
 
     if (!jsonString) {
       throw new Error("Empty summary received");
