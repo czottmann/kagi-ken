@@ -129,8 +129,17 @@ export async function summarize(input, token, options) {
     const streamData = await response.text();
     const parsedResponse = parseStreamingSummary(streamData);
 
-    // Extract output_data.markdown and return as data.output
-    const output = parsedResponse?.output_data?.markdown || "";
+    // Check for error state
+    if (parsedResponse?.state === "error") {
+      const errorMsg = parsedResponse?.reply || "Unknown summarization error";
+      throw new Error(errorMsg);
+    }
+
+    // Extract markdown output - try multiple possible fields for compatibility
+    const output = parsedResponse?.md ||
+      parsedResponse?.reply ||
+      parsedResponse?.output_data?.markdown ||
+      "";
     return { data: { output } };
   } catch (error) {
     if (error.code === "ENOTFOUND" || error.code === "ECONNREFUSED") {
@@ -143,22 +152,45 @@ export async function summarize(input, token, options) {
 /**
  * Parses streaming summary response to extract and parse the final JSON data
  *
+ * The Kagi API returns NUL-delimited messages with prefixes like:
+ * - "hi:{...}" - handshake message
+ * - "new_message.json:{...}" - summary data
+ * - "final:{...}" - legacy format
+ *
  * @param {string} streamData - Raw streaming response data
  * @returns {Object} Parsed JSON data from the final stream message
  */
 function parseStreamingSummary(streamData) {
   try {
-    // Split by NUL bytes and get the last non-empty message
+    // Split by NUL bytes and get all non-empty messages
     const messages = streamData.split("\x00").filter((msg) => msg.trim());
 
     if (messages.length === 0) {
       throw new Error("No summary data received");
     }
 
-    const lastMessage = messages[messages.length - 1].trim();
+    // Find the message containing summary data (new_message.json or final)
+    let jsonString = null;
+    for (let i = messages.length - 1; i >= 0; i--) {
+      const msg = messages[i].trim();
 
-    // Remove "final:" prefix if present
-    const jsonString = lastMessage.replace(/^final:/, "").trim();
+      // Check for new_message.json prefix (current API format)
+      if (msg.startsWith("new_message.json:")) {
+        jsonString = msg.replace(/^new_message.json:/, "").trim();
+        break;
+      }
+
+      // Check for final prefix (legacy format)
+      if (msg.startsWith("final:")) {
+        jsonString = msg.replace(/^final:/, "").trim();
+        break;
+      }
+    }
+
+    // If no prefixed message found, try the last message as raw JSON
+    if (!jsonString) {
+      jsonString = messages[messages.length - 1].trim();
+    }
 
     if (!jsonString) {
       throw new Error("Empty summary received");
@@ -171,6 +203,6 @@ function parseStreamingSummary(streamData) {
     if (error instanceof SyntaxError) {
       throw new Error("Failed to parse summary JSON response");
     }
-    throw new Error("Failed to parse summary response");
+    throw error;
   }
 }
