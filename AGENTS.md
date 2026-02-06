@@ -4,7 +4,7 @@ This file provides guidance to LLM agents when working with code in this reposit
 
 ## Project
 
-kagi-ken is a Node.js (>=22) ES module library providing access to Kagi.com search and summarizer via session tokens. It parses Kagi's web interface (HTML for search, streaming JSON for summarizer) and outputs structured JSON matching official API schemas. This is a maintained fork — upstream (`czottmann/kagi-ken`) is inactive.
+kagi-ken is a Node.js (>=22) ES module library providing access to Kagi.com search and summarizer via session tokens. It parses Kagi's web interface (HTML for search, streaming JSON for summarizer) and outputs structured JSON matching official API schemas. Forked from `czottmann/kagi-ken`.
 
 ## Commands
 
