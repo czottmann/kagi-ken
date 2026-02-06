@@ -201,7 +201,9 @@ function parseStreamingSummary(streamData) {
     return parsedData;
   } catch (error) {
     if (error instanceof SyntaxError) {
-      throw new Error("Failed to parse summary JSON response");
+      throw new Error(
+        `Failed to parse summary JSON response: ${jsonString?.substring(0, 300)}`,
+      );
     }
     throw error;
   }
