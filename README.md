@@ -21,7 +21,7 @@ The [Kagi API](https://help.kagi.com/kagi/api/overview.html) requires a separate
 ## Installation
 
 ```bash
-npm install czottmann/kagi-ken#1.2.0
+npm install czottmann/kagi-ken#1.3.0
 ```
 
 ## Usage
@@ -170,6 +170,10 @@ This project is neither affiliated with nor endorsed by Kagi. I'm just a very ha
 > [!TIP]
 > I make Shortcuts-related macOS & iOS productivity apps like [Actions For Obsidian](https://actions.work/actions-for-obsidian), [Browser Actions](https://actions.work/browser-actions) (which adds Shortcuts support for several major browsers), and [BarCuts](https://actions.work/barcuts) (a surprisingly useful contextual Shortcuts launcher). Check them out!
 
+### Contributors
+
+- [kdcokenny (Kenny)](https://github.com/kdcokenny)
+- [rnavarro (Robert Navarro)](https://github.com/rnavarro)
 
 ## Related Projects
 
